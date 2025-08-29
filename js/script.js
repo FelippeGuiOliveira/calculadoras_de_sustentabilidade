@@ -1,4 +1,5 @@
 // Gráfico de barras
+let delayed;
 const ctx = document.getElementById('graficoAgua').getContext('2d');
 const grafico = new Chart(ctx, {
   type: 'bar',
@@ -13,6 +14,10 @@ const grafico = new Chart(ctx, {
   },
   options: {
     responsive: true,
+    animation: {
+      duration: 1000, // 1000 milissegundos (1 segundo)
+      easing: 'easeInOut' // Tipo de movimento: começa rápido e desacelera pulando
+    },
     scales: {
       y: {
         beginAtZero: true,
@@ -45,19 +50,25 @@ const graficoEconomia = new Chart(ctxLinha, {
       {
         label: 'Projeção de Economia',
         data: [], // Será a diferença entre gasto atual e valor estimado
-        backgroundColor: '#2ecc71',
-        stack: 'stack1'
+        borderColor: '#2ecc71',
+        order: 0,
+        type: 'line'
       },
       {
         label: 'Gasto Líquido Estimado',
         data: [], // Será o valor estimado (após economia)
-        backgroundColor: '#cc2e2e',
-        stack: 'stack1'
+        backgroundColor: '#cc2e2e80',
+        order: 1,
+        borderRadius: 10
       }
     ]
   },
   options: {
     responsive: true,
+    animation: {
+      duration: 1000, // 1000 milissegundos (1 segundo)
+      easing: 'easeInOut'
+    },
     scales: {
       x: {
         stacked: true,
@@ -75,9 +86,13 @@ const graficoEconomia = new Chart(ctxLinha, {
         }
       }
     },
+    interaction: {
+      intersect: false,
+      mode: 'index',
+    },
     plugins: {
       legend: {
-        display: false 
+        display: false
       },
       tooltip: {
         callbacks: {
