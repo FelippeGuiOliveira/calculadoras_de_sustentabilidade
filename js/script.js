@@ -16,7 +16,7 @@ const grafico = new Chart(ctx, {
     responsive: true,
     animation: {
       duration: 1000, // 1000 milissegundos (1 segundo)
-      easing: 'easeInOut' // Tipo de movimento: começa rápido e desacelera pulando
+      easing: 'easeInOut'
     },
     scales: {
       y: {
